@@ -1,22 +1,28 @@
-from queue import Queue
- 
-graph = {0: [1, 3], 1: [0, 2, 3], 2: [4, 1, 5], 3: [4, 0, 1], 4: [2, 3, 5], 5: [4, 2], 6: []}
-print("The adjacency List representing the graph is:")
-print(graph)
- 
- 
-def bfs(graph, source):
-    Q = Queue()
-    visited_vertices = set()
-    Q.put(source)
-    visited_vertices.update({0})
-    while not Q.empty():
-        vertex = Q.get()
-        print(vertex, end="-->")
-        for u in graph[vertex]:
-            if u not in visited_vertices:
-                Q.put(u)
-                visited_vertices.update({u})
- 
-print("BFS traversal of graph with source 0 is:")
-bfs(graph, 0)
+graph = {
+  '5' : ['3','7'],
+  '3' : ['2', '4'],
+  '7' : ['8'],
+  '2' : [],
+  '4' : ['8'],
+  '8' : []
+}
+
+visited = [] # List for visited nodes.
+queue = []     #Initialize a queue
+
+def bfs(visited, graph, node): #function for BFS
+  visited.append(node)
+  queue.append(node)
+
+  while queue:          # Creating loop to visit each node
+    m = queue.pop(0) 
+    print (m, end = " ") 
+
+    for neighbour in graph[m]:
+      if neighbour not in visited:
+        visited.append(neighbour)
+        queue.append(neighbour)
+
+# Driver Code
+print("Following is the Breadth-First Search")
+bfs(visited, graph, '5')    # function calling
